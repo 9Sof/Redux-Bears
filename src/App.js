@@ -3,10 +3,12 @@ import axios from 'axios'
 import BearCard from './components/BearCard'
 import BearList from './components/BearList'
 import InputForm from './components/InputForm';
+import { useDispatch } from 'react-redux';
 
 export default () => {
 
-  const [bears, setBears] = useState({})
+  const dispatch = useDispatch();
+
   const [formData, setData] = useState({
     name: '',
     weight: 0,
@@ -17,7 +19,8 @@ export default () => {
 
   const getBears = async () => {
     const result = await axios.get(`http://localhost/api/bears`)
-    setBears(result.data)
+
+    dispatch( {type: 'GET_BEARS', bears: result.data})
   }
 
   const addBear = async () => {
@@ -54,8 +57,8 @@ export default () => {
   return (
     <div>
       <h2>Bears</h2>
-      <BearList bears={bears} deleteBear={deleteBear} updateBear={updateBear}/>
-      <InputForm data={formData} onChange={setData} addBear={addBear}/>
+      <BearList />
+      <InputForm />
     </div>
   )
 }
