@@ -28,7 +28,7 @@ const BearList = props => {
             {
                 bears.map((bear, index) => (
                     <div key={index} style={{ margin: 5 }}>
-                        <BearCard  {...bear} updateBear={() => props.updateBear(bear.id)} deleteBear={() => props.deleteBear(bear.id)} />
+                        <BearCard  {...bear}  />
                     </div>
                 ))
             }
